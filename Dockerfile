@@ -1,4 +1,4 @@
-FROM node:alpine AS build
+FROM node:10-alpine AS build
 
 WORKDIR /build
 ADD . /build

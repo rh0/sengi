@@ -1,11 +1,11 @@
-FROM node:10-buster-slim AS build
+FROM node:alpine AS build
 
 WORKDIR /build
 ADD . /build
 
-RUN apt update && apt install --yes git binutils
-RUN npm install
-RUN npm run build
+RUN apk add --no-cache --virtual .gyp python make g++ \
+    && npm install \
+    && apk del .gyp
 
 FROM alpine:latest
 

@@ -3,8 +3,9 @@ FROM node:10-alpine AS build
 WORKDIR /build
 ADD . /build
 
-RUN apk add --no-cache python3 make g++ \
-    && npm install
+RUN apk add --no-cache --virtual .gyp python3 make g++ \
+    && npm install \
+    && apk del .gyp
 
 FROM alpine:latest
 

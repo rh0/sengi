@@ -5,6 +5,7 @@ ADD . /build
 
 RUN apk add --no-cache --virtual .gyp python3 make g++ \
     && npm install \
+    && npm rebuild node-sass \
     && apk del .gyp
 
 FROM alpine:latest
